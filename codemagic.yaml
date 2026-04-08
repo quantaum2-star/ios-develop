@@ -1,0 +1,20 @@
+workflows:
+  ios-build:
+    name: Tonkeeper iOS Build
+    instance_type: mac_mini_m2
+    environment:
+      xcode: latest
+    scripts:
+      - name: Install CocoaPods
+        script: |
+          cd Tonkeeper
+          pod install
+      - name: Build IPA
+        script: |
+          xcodebuild -workspace Tonkeeper.xcworkspace \
+                     -scheme Tonkeeper \
+                     -configuration Release \
+                     -sdk iphoneos \
+                     -derivedDataPath build
+    artifacts:
+      - Tonkeeper/build/Build/Products/Release-iphoneos/*.ipa
