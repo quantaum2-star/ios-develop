@@ -5,10 +5,6 @@ workflows:
     environment:
       xcode: latest
     scripts:
-      - name: Install CocoaPods
-        script: |
-          cd Tonkeeper
-          pod install
       - name: Build IPA
         script: |
           xcodebuild -workspace Tonkeeper.xcworkspace \
